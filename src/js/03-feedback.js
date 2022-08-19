@@ -1,8 +1,6 @@
 import throttle from 'lodash.throttle';
 
 const form = document.querySelector('form');
-// const formInput = document.querySelector('input');
-// const formTextArea = document.querySelector('textarea');
 
 form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
