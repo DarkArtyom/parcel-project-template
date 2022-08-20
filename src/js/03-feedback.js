@@ -27,6 +27,9 @@ function populateInputForm(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+  if (Object.keys(formData).length == 0) {
+    return alert('fill email and message');
+  }
   console.log(formData);
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');

@@ -15,10 +15,10 @@ player.on('play', throttle(onPlay, 500));
 
 const itemFromStorage = localStorage.getItem('videoplayer-current-time');
 const parsedItem = JSON.parse(itemFromStorage);
-// console.log(parsedItem.seconds);
+//
 
 function playMovie() {
-  if (parsedItem) {
+  if (Object.keys(parsedItem).length != 0) {
     player
       .setCurrentTime(parsedItem.seconds)
       .then(function (seconds) {})
