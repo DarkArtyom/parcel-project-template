@@ -5,7 +5,9 @@ const form = document.querySelector('form');
 form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
 populateInputForm();
-const formData = {};
+let formData = {};
+const email = form.elements.email;
+const message = form.elements.message;
 
 function onFormInput(evt) {
   evt.preventDefault();
@@ -15,19 +17,17 @@ function onFormInput(evt) {
 }
 
 function populateInputForm(e) {
-  const savedForm = localStorage.getItem('feedback-form-state');
+  const parsedForm = JSON.parse(localStorage.getItem('feedback-form-state'));
 
-  if (savedForm) {
-    const parseForm = JSON.parse(savedForm);
-    console.log(parseForm);
-    form.email.value = parseForm.email;
-    form.message.value = parseForm.message;
+  if (parsedForm) {
+    form.email.value = parsedForm.email ? parsedForm.email : '';
+    form.message.value = parsedForm.message ? parsedForm.message : '';
   }
 }
 
 function onFormSubmit(e) {
   e.preventDefault();
-  if (Object.keys(formData).length == 0) {
+  if (email.value === '' || message.value === '') {
     return alert('fill email and message');
   }
   console.log(formData);
